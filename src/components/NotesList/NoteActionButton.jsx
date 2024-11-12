@@ -2,7 +2,12 @@ import React from 'react';
 
 const NoteActionButton = ({ type }) => (
   <button
-    className={`note-item__action-button-${type}`}
+    className={`
+    note-item__action-button-${type}
+    rounded-full p-1
+    transition ease-in-out duration-150
+    hover:bg-opacity-40
+    ${type === 'archive' ? 'hover:bg-accentLighterColor' : 'hover:bg-dangerLighterColor'}`}
     title={`${type} note button.`}
   >
     {
