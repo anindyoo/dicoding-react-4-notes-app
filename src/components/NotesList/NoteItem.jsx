@@ -12,12 +12,12 @@ const NoteItem = ({
   const formattedDate = showFormattedDate(createdAt);
 
   return (
-    <div className="
+    <li className="
     notes-item
-
     flex flex-col gap-6 justify-between
     p-4
     rounded-lg
+    border border-accentColor
     bg-secondaryColor"
     >
       <NoteItemContent
@@ -26,7 +26,7 @@ const NoteItem = ({
         date={formattedDate}
       />
       <NoteItemActionButtons id={id} />
-    </div>
+    </li>
   );
 };
 

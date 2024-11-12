@@ -18,7 +18,7 @@ const App = () => {
     min-h-screen
     mt-14 mb-40"
     >
-      <h1 className='notes-app__title text-5xl font-bold'>Notes App</h1>
+      <h1 className='notes-app__title text-6xl font-bold'>Notes App</h1>
       <div className="
       notes-app__content-wrapper
       flex flex-row justify-between gap-6"
