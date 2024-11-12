@@ -16,3 +16,18 @@ h2 {
 .center-element {
   @apply w-[90%] 3xs:w-[90%] max-w-[21.063rem] md:max-w-[80rem] mx-auto
 }
+
+.label-input-wrapper {
+  @apply flex flex-col gap-3
+}
+
+.label-input-wrapper label {
+  @apply text-textDate
+}
+
+.notes-input__form input,
+.notes-input__form textarea {
+  @apply
+  bg-tertiaryColor 
+  focus:outline-none
+}
