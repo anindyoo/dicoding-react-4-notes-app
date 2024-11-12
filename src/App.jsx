@@ -10,6 +10,19 @@ const App = () => {
     setNotesState(getInitialData());
   }, []);
 
+  const addNote = ({ title, body }) => {
+    setNotesState([
+      ...notes,
+      {
+        id: +new Date(),
+        title,
+        body,
+        archived: false,
+        createdAt: new Date().toISOString(),
+      },
+    ]);
+  };
+
   return (
     <div className="
     notes-app
@@ -23,7 +36,7 @@ const App = () => {
       notes-app__content-wrapper
       flex flex-row justify-between gap-6"
       >
-        <NotesInput />
+        <NotesInput addNote={addNote} />
         <NotesList
           notes={notes}
           showFormattedDate={showFormattedDate}
