@@ -28,7 +28,7 @@ h2 {
 .notes-input__form input,
 .notes-input__form textarea {
   @apply
-  bg-tertiaryColor 
+  bg-transparent 
   focus:outline-none
 }
 
