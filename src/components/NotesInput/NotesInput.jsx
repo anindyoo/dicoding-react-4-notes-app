@@ -31,7 +31,7 @@ const NotesInput = ({ addNote }) => {
     <div className="
     notes-input
     flex flex-col gap-6
-    w-[30rem]"
+    md:w-[30rem]"
     >
       <h2 className="notes-input__heading-title">Add Note</h2>
       <form onSubmit={onSubmitEventHandler}>
@@ -74,7 +74,7 @@ const NotesInput = ({ addNote }) => {
               id="body"
               name="body"
               placeholder="Enter note body..."
-              rows={10}
+              rows={5}
               className="note-input__body-input text-lg"
               value={inputDataState.body}
               onChange={onInputChangeHandler}

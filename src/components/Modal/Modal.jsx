@@ -28,7 +28,7 @@ const Modal = ({
       <div className="
       modal__content
       flex flex-col justify-between items-center gap-12
-      w-[25%]
+      w-[95%] md:w-[50%] lg:w-[40%] xl:w-[25%]
       p-6
       rounded-lg
       border border-tertiaryColor
