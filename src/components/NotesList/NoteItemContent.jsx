@@ -2,7 +2,11 @@ import React from 'react';
 import NoteItemHeader from './NoteItemHeader';
 import NoteItemBody from './NoteItemBody';
 
-const NoteItemContent = ({ title, body, date }) => (
+const NoteItemContent = ({
+  title,
+  body,
+  date,
+}) => (
   <div className="
     notes-item__content
     flex flex-col gap-4"

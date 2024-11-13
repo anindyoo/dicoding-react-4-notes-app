@@ -3,12 +3,13 @@ import NoteItemContent from './NoteItemContent';
 import NoteItemActionButtons from './NoteItemActionButtons';
 
 const NoteItem = ({
-    id,
-    title,
-    body,
-    createdAt,
-    showFormattedDate,
-  }) => {
+  id,
+  title,
+  body,
+  createdAt,
+  showFormattedDate,
+  modalToggle,
+}) => {
   const formattedDate = showFormattedDate(createdAt);
 
   return (
@@ -25,7 +26,10 @@ const NoteItem = ({
         body={body}
         date={formattedDate}
       />
-      <NoteItemActionButtons id={id} />
+      <NoteItemActionButtons
+        id={id}
+        modalToggle={modalToggle}
+      />
     </li>
   );
 };
