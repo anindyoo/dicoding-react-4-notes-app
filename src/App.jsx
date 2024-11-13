@@ -83,7 +83,7 @@ const App = () => {
       <h1 className="notes-app__title text-6xl font-bold">Notes App</h1>
       <div className="
       notes-app__content-wrapper
-      flex flex-row justify-between gap-6"
+      flex flex-col md:flex-row justify-between gap-14 md:gap-6"
       >
         <NotesInput addNote={onAddNoteHandler} />
         <NotesList

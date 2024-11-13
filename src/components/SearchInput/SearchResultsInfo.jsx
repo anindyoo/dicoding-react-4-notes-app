@@ -8,7 +8,7 @@ const SearchResultsInfo = ({
 }) => (
   <div className="
   search-results-info
-  flex flex-row gap-1
+  lg:flex flex-row gap-1
   text-lg"
   >
     <p className="search-results-info__body">
