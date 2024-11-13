@@ -1,7 +1,11 @@
 import React from 'react';
 import NoteItem from './NoteItem';
 
-const NotesList = ({ notes, showFormattedDate }) => (
+const NotesList = ({
+  notes,
+  showFormattedDate,
+  modalToggle,
+}) => (
   <div className="
   notes-list
   flex flex-col gap-6
@@ -16,6 +20,7 @@ const NotesList = ({ notes, showFormattedDate }) => (
         <NoteItem
           key={note.id}
           showFormattedDate={showFormattedDate}
+          modalToggle={modalToggle}
           {...note}
         />
       ))}

@@ -31,3 +31,11 @@ h2 {
   bg-tertiaryColor 
   focus:outline-none
 }
+
+.modal__buttons button {
+  @apply
+  py-2 px-3
+  border
+  rounded-xl
+  transition ease-in-out duration-75
+}

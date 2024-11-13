@@ -53,7 +53,7 @@ const NotesInput = ({ addNote }) => {
             </div>
             <textarea
               id="title"
-              name='title'
+              name="title"
               placeholder="Enter note title..."
               className="note-input__title-input text-2xl resize-none"
               value={inputDataState.title}
@@ -89,7 +89,7 @@ const NotesInput = ({ addNote }) => {
             flex flex-row justify-center items-center gap-1
             p-2
             rounded-md
-            transition ease-in-out duration-50
+            transition ease-in-out duration-75
             bg-primaryColor hover:bg-secondaryColor"
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
