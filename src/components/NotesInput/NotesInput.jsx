@@ -90,6 +90,7 @@ const NotesInput = ({ addNote }) => {
             p-2
             rounded-md
             transition ease-in-out duration-75
+            border border-accentColor border-opacity-30
             bg-primaryColor hover:bg-secondaryColor"
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
