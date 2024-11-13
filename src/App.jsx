@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import NotesInput from './components/NotesInput/NotesInput';
 import NotesList from './components/NotesList/NotesList';
 import { getInitialData, showFormattedDate } from './utils/data';
@@ -15,6 +15,7 @@ const App = () => {
   const [notes, setNotesState] = useState(notesData);
   const [activeModalObjectState, setActiveModalObjectState] = useState(emptyNote);
   const [archiveListToggleState, setArchiveListToggleState] = useState(false);
+  const [searchInputState, setSearchInputState] = useState('');
 
   const getRegularNotes = (notesData) => notesData.filter((note) => !note.archived);
   const getArchivedNotes = (notesData) => notesData.filter((note) => note.archived);
@@ -39,15 +40,14 @@ const App = () => {
 
   const onDeleteHandler = (id) => {
     const filteredNotes = notes.filter((note) => note.id !== id);
+
     setNotesState(filteredNotes);
     setActiveModalObjectState(emptyNote);
   };
 
   const onCloseModalHandler = () => setActiveModalObjectState(emptyNote);
 
-  const onToggleArchiveListHandler = () => {
-    setArchiveListToggleState(!archiveListToggleState);
-  };
+  const onToggleArchiveListHandler = () => setArchiveListToggleState(!archiveListToggleState);
 
   const onToggleNoteArchiveHandler = (id) => {
     const updatedNotes = notes.map((note) => note.id === id
@@ -58,9 +58,19 @@ const App = () => {
     setActiveModalObjectState(emptyNote);
   };
 
-  useEffect(() => {
+  const filteredNotes = notes.filter((note) => (
+      note.title.toLowerCase().includes(searchInputState.toLowerCase())
+    ));
 
-  }, []);
+  const onSearchInputChangeHandler = (event) => {
+    const searchQuery = event.target.value;
+    setSearchInputState(searchQuery);
+  };
+
+  const searchCountData = ({
+    regularCount: getArchivedNotes(filteredNotes).length,
+    archviedCount: getRegularNotes(filteredNotes).length,
+  });
 
   return (
     <div className="
@@ -77,11 +87,16 @@ const App = () => {
       >
         <NotesInput addNote={onAddNoteHandler} />
         <NotesList
-          notes={archiveListToggleState ? getArchivedNotes(notes) : getRegularNotes(notes)}
+          notes={archiveListToggleState
+            ? getArchivedNotes(filteredNotes)
+            : getRegularNotes(filteredNotes)}
+          {...searchCountData}
           showFormattedDate={showFormattedDate}
           modalToggle={onModalToggleHandler}
           archiveListState={archiveListToggleState}
           archiveListToggle={onToggleArchiveListHandler}
+          searchState={searchInputState}
+          searchHandler={onSearchInputChangeHandler}
         />
       </div>
       {activeModalObjectState.id && (
