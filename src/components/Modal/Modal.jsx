@@ -7,10 +7,11 @@ const Modal = ({
   title,
   onDelete,
   onClose,
+  archiveNoteToggle,
 }) => {
   const handleConfirmButtonOnClick = () => {
     if (type === 'archive') {
-      console.log('archive is still in progress.');
+      archiveNoteToggle(id);
     } else if (type === 'delete') {
       onDelete(id);
     }

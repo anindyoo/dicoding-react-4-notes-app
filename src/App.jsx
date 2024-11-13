@@ -4,16 +4,21 @@ import NotesList from './components/NotesList/NotesList';
 import { getInitialData, showFormattedDate } from './utils/data';
 import Modal from './components/Modal/Modal';
 
-const App = () => {
-  const [notes, setNotesState] = useState([]);
-  const [activeModalObjectState, setActiveModalObjectState] = useState({
-    id: '',
-    type: '',
-  });
+const emptyNote = {
+  id: '',
+  type: '',
+};
 
-  useEffect(() => {
-    setNotesState(getInitialData());
-  }, []);
+const App = () => {
+  const notesData = getInitialData();
+
+  const [notes, setNotesState] = useState(notesData);
+  const [activeModalObjectState, setActiveModalObjectState] = useState(emptyNote);
+  const [archiveListToggleState, setArchiveListToggleState] = useState(false);
+
+  const getRegularNotes = (notesData) => notesData.filter((note) => !note.archived);
+  const getArchivedNotes = (notesData) => notesData.filter((note) => note.archived);
+  const findNoteById = (id) => notes.find((note) => note.id === id);
 
   const onAddNoteHandler = ({ title, body }) => {
     setNotesState([
@@ -35,18 +40,27 @@ const App = () => {
   const onDeleteHandler = (id) => {
     const filteredNotes = notes.filter((note) => note.id !== id);
     setNotesState(filteredNotes);
-    setActiveModalObjectState({
-      id: '',
-      type:'',
-    });
+    setActiveModalObjectState(emptyNote);
   };
 
-  const onCloseModalHandler = () => setActiveModalObjectState({
-    id: '',
-    type:'',
-  });
+  const onCloseModalHandler = () => setActiveModalObjectState(emptyNote);
 
-  const findNoteById = (id) => notes.find((note) => note.id === id);
+  const onToggleArchiveListHandler = () => {
+    setArchiveListToggleState(!archiveListToggleState);
+  };
+
+  const onToggleNoteArchiveHandler = (id) => {
+    const updatedNotes = notes.map((note) => note.id === id
+      ? { ...note, archived: !note.archived }
+      : note);
+
+    setNotesState(updatedNotes);
+    setActiveModalObjectState(emptyNote);
+  };
+
+  useEffect(() => {
+
+  }, []);
 
   return (
     <div className="
@@ -63,9 +77,11 @@ const App = () => {
       >
         <NotesInput addNote={onAddNoteHandler} />
         <NotesList
-          notes={notes}
+          notes={archiveListToggleState ? getArchivedNotes(notes) : getRegularNotes(notes)}
           showFormattedDate={showFormattedDate}
           modalToggle={onModalToggleHandler}
+          archiveListState={archiveListToggleState}
+          archiveListToggle={onToggleArchiveListHandler}
         />
       </div>
       {activeModalObjectState.id && (
@@ -74,6 +90,7 @@ const App = () => {
           title={findNoteById(activeModalObjectState.id).title}
           onDelete={onDeleteHandler}
           onClose={onCloseModalHandler}
+          archiveNoteToggle={onToggleNoteArchiveHandler}
         />
       )}
     </div>
